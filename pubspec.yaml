@@ -1,0 +1,77 @@
+name: ujyalonepal
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  #UTILITY PACKAGES
+  iconsax: ^0.0.8
+  cupertino_icons: ^1.0.8
+  animated_splash_screen: ^1.3.0
+  http: ^1.2.2
+  intl: ^0.20.1
+  logger: ^2.5.0
+  url_launcher: ^6.3.1
+  flutter_native_splash: ^2.4.4
+  smooth_page_indicator: ^1.2.0+3
+  lottie: ^3.3.1
+  connectivity_plus: ^6.1.2
+
+  #STATE MANAGEMENT
+  get: ^4.6.5
+  get_storage: ^2.1.1
+
+  #Firebase
+  firebase_core: ^3.11.0
+  cloud_firestore: ^5.6.2
+  firebase_auth: ^5.4.1
+
+  curved_navigation_bar: ^1.0.6
+  shimmer: ^3.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+
+
+
+flutter:
+
+  uses-material-design: true
+
+  #-------local assets------#
+  assets:
+    - assets/all_images/
+    - assets/all_images/onboarding_images/
+    - assets/animations/
+
+  #-------------LOCAL FONTS---------
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins-Italic.ttf
+          style: italic
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 800
