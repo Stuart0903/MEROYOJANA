@@ -19,7 +19,7 @@ class UserRepository extends GetxController {
 
 
   /// Function to save user data to Firestore.
-  Future<void> saveUserRecord(UserModel user) async {
+  Future<void>saveUserRecord(UserModel user) async {
     try {
       print("Saving User: ${user.toJson()}");
       await _db.collection("Users").doc(user.id).set(user.toJson());
@@ -99,6 +99,6 @@ class UserRepository extends GetxController {
     }
   }
 
-  ///Update any Image
+///Update any Image
 }
 

@@ -18,12 +18,10 @@ Future<void> main() async {
   //Todo: Init Local Storage
   await GetStorage.init();
 
-  //Todo: Await Native Splash
-
 
   // //Todo: Initialize Firebase
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then(
-        (FirebaseApp value) => Get.put(AuthenticationRepository()),
+      (FirebaseApp value) => Get.put(AuthenticationRepository())
   );
 
 

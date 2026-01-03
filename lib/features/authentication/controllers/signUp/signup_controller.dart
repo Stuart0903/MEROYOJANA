@@ -3,10 +3,13 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../data/repo/authentication/auth_repo.dart';
+import '../../../../data/repo/user/user_repo.dart';
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/https/network_manager.dart';
 import '../../../../utils/popups/full_screenLoader.dart';
 import '../../../../utils/popups/loaders.dart';
+import '../../models/user_model.dart';
+import '../../views/signup/verify_email.dart';
 
 
 class SignUpController extends GetxController{
@@ -42,20 +45,65 @@ class SignUpController extends GetxController{
   }
 
   /// SignUp
-  void signup(){
-    debugPrint('Signup button Clicked');
-  }
+  void signup() async{
+    try{
+      //Form Validation
+      if (!signupFormkey.currentState!.validate()){
+        return;
+      }
 
-  @override
-  void onClose() {
-    email.dispose();
-    firstName.dispose();
-    lastName.dispose();
-    userName.dispose();
-    password.dispose();
-    phoneNumber.dispose();
-    dateOfBirth.dispose();
-    address.dispose();
-    super.onClose();
+      //Privacy Policy check
+      if(!privaryPolicy.value){
+        UNLoaders.warningSnackBar(
+            title: "Accept Privacy Policy",
+            message: 'In order to create an account, you must accept the Privacy Policy & Terms of Use'
+        );
+        return;
+      }
+
+      // Start Loading
+      UNFullScreenLoader.openLoadingDialog('We are processing your information', UNImages.fullScreenloader);
+
+      //Check Internet Connectivity
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected){
+        UNFullScreenLoader.stopLoading();
+        UNLoaders.errorSnackBar(
+            title: 'No Internet',
+            message: 'Please check your internet connection and try again.'
+        );
+        return;
+      }
+
+      //Register User in the Firebase Authentication & Save user data in the Firebase
+      final userCredential = await AuthenticationRepository.instance.registerWithEmailandPassword(email.text.trim(), password.text.trim());
+
+      //Save Authentication userdata in the Firebase Firestore
+      final newUser = UserModel(
+        id: userCredential.user!.uid,
+        firstName: firstName.text.trim(),
+        lastName: lastName.text.trim(),
+        userName: userName.text.trim(),
+        email: email.text.trim(),
+        phoneNumber: phoneNumber.text.trim(),
+        profilePicture: '',
+        gender: selectedGender.value,
+        dateOfBirth: dateOfBirth.text,
+        address: address.text.trim(),
+      );
+
+      final userRepository = Get.put(UserRepository());
+      await userRepository.saveUserRecord(newUser);
+
+      //Show success Message
+      UNLoaders.successSnackBar(title: 'Congratulations', message: 'Your account has been created! Verify email to continue');
+
+      //Navigate to Verify Email Screen
+      Get.to(()=> VerifyEmailView(email: email.text.trim(),));
+
+    }catch(e){
+      UNFullScreenLoader.stopLoading();
+      UNLoaders.errorSnackBar(title: 'Oh Shoot!!', message: e.toString());
+    }
   }
 }

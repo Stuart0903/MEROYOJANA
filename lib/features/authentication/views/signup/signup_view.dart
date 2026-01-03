@@ -22,29 +22,29 @@ class SignupView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
             padding:EdgeInsets.all(UNSizes.defaultSpace),
-        child: Column(
-          crossAxisAlignment : CrossAxisAlignment.start,
-          children: [
-              ///title
-          Text(UNTexts.signupTitle,style: Theme.of(context).textTheme.headlineMedium,),
-              const SizedBox(height: UNSizes.spaceBtwSections,),
+            child: Column(
+              crossAxisAlignment : CrossAxisAlignment.start,
+              children: [
+                ///title
+                Text(UNTexts.signupTitle,style: Theme.of(context).textTheme.headlineMedium,),
+                const SizedBox(height: UNSizes.spaceBtwSections,),
 
-            ///form
-            const UNsignupform(),
-            const SizedBox(height: UNSizes.spaceBtwInputFields,),
-
-
-            /// Divider
-            UNLoginDivider(dividerText: UNTexts.orSignInWith.capitalize!),
-            const SizedBox(height: UNSizes.spaceBtwInputFields,),
-
-            /// Social Buttons
-            const UNLoginFooter(),
-            const SizedBox(height: UNSizes.spaceBtwInputFields,),
+                ///form
+                const UNsignupform(),
+                const SizedBox(height: UNSizes.spaceBtwInputFields,),
 
 
-          ],
-        )),
+                /// Divider
+                UNLoginDivider(dividerText: UNTexts.orSignInWith.capitalize!),
+                const SizedBox(height: UNSizes.spaceBtwInputFields,),
+
+                /// Social Buttons
+                const UNLoginFooter(),
+                const SizedBox(height: UNSizes.spaceBtwInputFields,),
+
+
+              ],
+            )),
       ),
 
     );

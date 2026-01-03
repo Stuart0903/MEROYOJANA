@@ -6,6 +6,7 @@ import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import '../../../../../utils/helpers/helpers.dart';
+import '../../../controllers/signUp/signup_controller.dart';
 
 
 
@@ -17,17 +18,17 @@ class UNTermsAndConditioncheckbox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final controller = SignUpController.instance;
+    final controller = SignUpController.instance;
     final dark = UNHelperFunctions.isDarkMode(context);
     return Row(
       children: [
         SizedBox( width: 20, height: 24,
-            // child: Obx(
-            //         () =>  Checkbox(
-            //             value: controller.privaryPolicy.value,
-            //             onChanged: (value) => controller.privaryPolicy.value =!controller.privaryPolicy.value,
-            //         )
-            // )
+            child: Obx(
+                    () =>  Checkbox(
+                        value: controller.privaryPolicy.value,
+                        onChanged: (value) => controller.privaryPolicy.value =!controller.privaryPolicy.value,
+                    )
+            )
         ),
         const SizedBox(width: UNSizes.spaceBtwInputFields,),
         Text.rich(
