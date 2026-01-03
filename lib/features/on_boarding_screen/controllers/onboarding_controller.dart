@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../authentication/views/login/login_view.dart';
 import '../../authentication/views/signup/signup_view.dart';
 
 
@@ -45,9 +46,9 @@ class OnBoardingController extends GetxController{
     final storage = GetStorage();
     storage.write('isFirstTime', false);
 
-    Get.offAll(const SignupView());
+    // Get.offAll(const SignupView());
 
-    // Get.offAll(const LoginView());
+    Get.offAll(const LoginView());
   }
 
 

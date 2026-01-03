@@ -23,6 +23,7 @@ class SplashScreen extends StatelessWidget {
       splashTransition: SplashTransition.fadeTransition,
       pageTransitionType: PageTransitionType.fade,
       backgroundColor: Colors.white,
+      
     );
   }
 }

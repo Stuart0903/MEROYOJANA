@@ -6,6 +6,8 @@ import 'package:ujyalonepal/features/splash_screen/splash_view.dart';
 import 'package:ujyalonepal/utils/constants/colors.dart';
 import 'package:ujyalonepal/utils/theme/theme.dart';
 
+import 'bindings/general_bindings.dart';
+
 
 
 
@@ -19,13 +21,13 @@ class MyApp extends StatelessWidget {
         theme: UNAppTheme.lightTheme,
         darkTheme: UNAppTheme.darkTheme,
         debugShowCheckedModeBanner: false,
-        // initialBinding: GeneralBindings(),
+        initialBinding: GeneralBindings(),
         ///show Loader or circular progress indicator
         home: SplashScreen(nextScreen: const Scaffold(
-          backgroundColor: UNColors.primary,
-          body: OnBoardingView()
+            backgroundColor: UNColors.primary,
+            body: OnBoardingView()
         ))
-        // home: const Scaffold(backgroundColor: UNColors.primary, body: Center(child: CircularProgressIndicator(color: Colors.white),),)
+      // home: const Scaffold(backgroundColor: UNColors.primary, body: Center(child: CircularProgressIndicator(color: Colors.white),),)
     );
   }
 }

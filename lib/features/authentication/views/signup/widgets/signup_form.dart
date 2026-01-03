@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:iconsax/iconsax.dart';
-import 'package:ujyalonepal/features/authentication/controllers/signUp/signup_controller.dart';
 import 'package:ujyalonepal/features/authentication/views/signup/widgets/terms_condition_checkbox.dart';
 
 
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import '../../../../../utils/validators/validation.dart';
+import '../../../controllers/signUp/signup_controller.dart';
 
 class UNsignupform extends StatelessWidget {
   const UNsignupform({
@@ -19,13 +19,14 @@ class UNsignupform extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(SignUpController());
     return Form(
+      key: controller.signupFormkey,
       child: Column(
         children: [
           Row(
             children: [
               Expanded(
                 child: TextFormField(
-                  controller : controller.firstName,
+                  controller: controller.firstName,
                   validator: (value) => UNValidators.validateEmptyText('First Name', value),
                   expands:false,
                   decoration: InputDecoration(
@@ -154,7 +155,7 @@ class UNsignupform extends StatelessWidget {
                 ()=> TextFormField(
               controller: controller.password,
               validator: (value) => UNValidators.validatePassword(value),
-              // obscureText: controller.hidePassword.value,
+              obscureText: controller.hidePassword.value,
               decoration: InputDecoration(
                   labelText: UNTexts.password,
                   prefixIcon: Icon(Iconsax.password_check),
